@@ -1,6 +1,6 @@
 FROM debian:stretch-slim
 MAINTAINER victor apostol <apostol.victor@gmail.com>
-ENV LAST_UPDATED 2018-08-12
+ENV LAST_UPDATED 2019-03-29
 ENV DEBIAN_FRONTEND noninteractive
 RUN apt-get update
 RUN apt-get -y upgrade
@@ -19,7 +19,7 @@ RUN mkdir -p /run/php
 RUN curl -o /tmp/composer-setup.php https://getcomposer.org/installer \
   && curl -o /tmp/composer-setup.sig https://composer.github.io/installer.sig \
   && php -r "if (hash('SHA384', file_get_contents('/tmp/composer-setup.php')) !== trim(file_get_contents('/tmp/composer-setup.sig'))) { unlink('/tmp/composer-setup.php'); echo 'Invalid installer' . PHP_EOL; exit(1); }"
-ENV COMPOSER_VERSION 1.7.1
+ENV COMPOSER_VERSION 1.8.4
 
 # Install Composer
 RUN php /tmp/composer-setup.php --no-ansi --install-dir=/usr/local/bin --filename=composer --version=${COMPOSER_VERSION} && rm -rf /tmp/composer-setup.php
